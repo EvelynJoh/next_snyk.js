@@ -21,3 +21,7 @@ jobs:
       
     - name: Test
       run: npm test
+    - name: Snyk Security Check
+      run: npx snyk test --org=EvelynJoh
+      env:
+        SNYK_TOKEN: ${{ secrets.snyk_token }}
