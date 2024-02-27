@@ -8,11 +8,16 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
+    
     - name: Setup Node.js
       uses: actions/setup-node@v1
       with:
         node-version: '14'
-        
+    
+    # Installieren Sie die neueste Version von npm, um sicherzustellen, dass npm workspaces funktionieren.
+    - name: Install latest npm
+      run: npm install -g npm@latest
+      
     - name: Install Dependencies
       run: npm install
       
@@ -21,7 +26,9 @@ jobs:
       
     - name: Test
       run: npm test
+      
     - name: Snyk Security Check
       run: npx snyk test --org=EvelynJoh
       env:
-        SNYK_TOKEN: ${{ secrets.snyk_token }}
+        SNYK_TOKEN: ${{ secrets.synk_token }}
+      
